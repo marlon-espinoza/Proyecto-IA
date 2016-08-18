@@ -5,6 +5,8 @@
  */
 package sistemaexperto;
 
+import jess.*;
+
 /**
  *
  * @author USUARIO
@@ -14,8 +16,14 @@ public class SistemaExperto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static String nom = "hola.CLP";
+
+    public static void main(String[] args) throws JessException {
         // TODO code application logic here
+        Rete r = new Rete();
+        r.batch(nom);
+        r.reset();
+        r.run();
     }
     
 }
