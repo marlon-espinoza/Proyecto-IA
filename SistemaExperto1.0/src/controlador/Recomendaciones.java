@@ -56,6 +56,7 @@ public class Recomendaciones implements Serializable{
                 PuntoTuristico p = (PuntoTuristico)e.getValue();
                 System.out.println("Key: "+e.getKey() + " - Valor: " + p.mostrarPunto());
             }
+            System.out.println(puntosTuristicos.size());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } 
@@ -72,7 +73,14 @@ public class Recomendaciones implements Serializable{
     public static ArrayList<String> getRecomendaciones() {
         return recomendaciones;
     }
-
+    public HashMap<String,PuntoTuristico> getPuntosTuristicos(){
+        HashMap<String,PuntoTuristico> recomendaciones = new HashMap();
+        for(String nombrePunto:this.recomendaciones){
+            PuntoTuristico p=puntosTuristicos.get(nombrePunto);
+            recomendaciones.put(nombrePunto,p);
+        }
+        return recomendaciones;
+    }
     public static void setRecomendaciones(ArrayList<String> recomendaciones) {
         Recomendaciones.recomendaciones = recomendaciones;
     }
@@ -89,59 +97,10 @@ public class Recomendaciones implements Serializable{
         else return null;
         
     }
+    
     public static void main(String[] args){
         Recomendaciones r=new Recomendaciones();
         r.readTuristPoints();
     }
-    class PuntoTuristico{
-        private float longitud;
-        private float latitud;
-        private String nombre;
-        private String descripcion;
-
-        public PuntoTuristico(float longitud, float latitud, String nombre, String descripcion) {
-            this.longitud = longitud;
-            this.latitud = latitud;
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-        }
-
-        public float getLongitud() {
-            return longitud;
-        }
-
-        public void setLongitud(float longitud) {
-            this.longitud = longitud;
-        }
-
-        public float getLatitud() {
-            return latitud;
-        }
-
-        public void setLatitud(float latitud) {
-            this.latitud = latitud;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public String getDescripcion() {
-            return descripcion;
-        }
-
-        public void setDescripcion(String descripcion) {
-            this.descripcion = descripcion;
-        }
-        
-        public String mostrarPunto(){
-            return this.descripcion+" latitud: "+this.latitud+" longitud: "+this.longitud;
-        }
-        
-        
-    }
+    
 }
