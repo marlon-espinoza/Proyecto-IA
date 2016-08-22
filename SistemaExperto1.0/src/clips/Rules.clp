@@ -27,6 +27,8 @@
     (call ?*mc* addRecomendacion "Galapagos Beach at Tortuga Bay")
     (call ?*mc* addRecomendacion "Dive Center Silberstein")
     (call ?*mc* addRecomendacion "Eagleray Tours")
+    (call ?*mc* addRecomendacion "TerraDiversa")
+    
 )
 
 (defrule r3
@@ -52,7 +54,7 @@
 (defrule r6
 	(clima (tipo-clima "cálido")) (lugares(lugares-interes "playas"))
     =>
-    (call ?*mc* addRecomendacion "Playa los Frailes")
+    (call ?*mc* addRecomendacion "Playa de los Frailes")
     (call ?*mc* addRecomendacion "Playa de Chipipe")
 )
 
@@ -91,7 +93,7 @@
 (defrule r12
 	(clima (tipo-clima "cálido")) (lugares(lugares-interes "playa")) (or(actividades(tipo-actividades "pesca"))(actividades(tipo-actividades "tours")))
     =>
-    (call ?*mc* addRecomendacion "Puerto López")
+    (call ?*mc* addRecomendacion "Puerto Lopez")
 )
 
 (defrule r13
@@ -113,7 +115,7 @@
 (defrule r15
 	(clima (tipo-clima "cálido")) (lugares(lugares-interes "flora y fauna")) (actividades(tipo-actividades "ciclismo"))
     =>
-    (printout t "Baños: Ruta de las cascadas" crlf)    
+    (call ?*mc* addRecomendacion "Ruta de las cascadas")   
 )
 
 (defrule r16
@@ -130,8 +132,8 @@
 
 (defrule r18
 	(clima (tipo-clima "cálido")) (lugares(lugares-interes "parques nacionales")) (actividades(tipo-actividades "tours"))
-    =>
-    (printout t "Galapagos: Ruta de las cascadas" crlf)    
+    => 
+    (call ?*mc* addRecomendacion "Ruta de las cascadas")    
 )
 
 (defrule r19
@@ -204,8 +206,8 @@
 
 (defrule r30
 	(clima (tipo-clima "frío")) (lugares(lugares-interes "zoológicos")) (actividades(tipo-actividades "montañismo"))
-    =>
-    (printout t "Cuenca: Amaru Zoológico" crlf)    
+    => 
+    (call ?*mc* addRecomendacion "Amaru Zoológico") 
 )
 
 (defrule r31
@@ -222,7 +224,7 @@
 )
 
 (defrule r33
-	(clima (tipo-clima "frío")) (lugares(lugares-interes "sitios tradicionales")) (actividades(tipo-actividades "tour"))
+	(clima (tipo-clima "frío")) (lugares(lugares-interes "sitios tradicionales")) (actividades(tipo-actividades "tours"))
     =>
     (call ?*mc* addRecomendacion "Ruinas Ingapirca")
 )
@@ -232,5 +234,42 @@
     =>
     (call ?*mc* addRecomendacion "Laguna Quilotoa")
 )
+
+(defrule r35
+	(or(clima (tipo-clima "frío"))(clima (tipo-clima "cálido"))) (lugares(lugares-interes "flora y fauna")) (actividades(tipo-actividades "montañismo"))
+    =>
+    (call ?*mc* addRecomendacion "Cascada piedra blanca")
+)
+
+(defrule r36
+	(clima (tipo-clima "cálido")) (or(lugares(lugares-interes "sitios tradicionales")) (lugares(lugares-interes "monumentos"))) (actividades(tipo-actividades "tours"))
+    =>
+    (call ?*mc* addRecomendacion "Malecon 2000")
+)
+
+(defrule r37
+	(clima (tipo-clima "frío")) (lugares(lugares-interes "sitios tradicionales")) (actividades(tipo-actividades "tours"))
+    =>
+    (call ?*mc* addRecomendacion "Tren Ecuador")
+)
+
+(defrule r38
+	(clima (tipo-clima "cálido")) (or(lugares(lugares-interes "sitios tradicionales")) (lugares(lugares-interes "museos"))) (actividades(tipo-actividades "diversión y juegos"))
+    =>
+    (call ?*mc* addRecomendacion "Cerro Santa Ana")
+)
+
+(defrule r39
+	(clima (tipo-clima "frío")) (lugares(lugares-interes "parque nacionales")) (actividades(tipo-actividades "tours"))
+    =>
+    (call ?*mc* addRecomendacion "Reserva El Chato")
+)
+
+(defrule r40
+	(clima (tipo-clima "cálido")) (lugares(lugares-interes "sitios tradiconales")) (actividades(tipo-actividades "relajacion"))
+    =>
+    (call ?*mc* addRecomendacion "Santuario Blanca Estrella del Mar")
+)
+
 (run)
 
