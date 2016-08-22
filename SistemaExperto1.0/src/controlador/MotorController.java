@@ -9,6 +9,8 @@ package controlador;
 
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,7 +44,7 @@ public class MotorController implements Serializable{
     }
     
     
-    public void afirmar(ArrayList<String>climas,ArrayList<String>lugares,ArrayList<String>actividades) throws JessException{
+    public void afirmar(ArrayList<String>climas,ArrayList<String>lugares,ArrayList<String>actividades) throws JessException, MalformedURLException, UnsupportedEncodingException{
         motor.reset();
         Recomendaciones.clear();
         //Iterator iterator = motor.listFacts();
@@ -67,6 +69,10 @@ public class MotorController implements Serializable{
         //motor.assertString("(\"Frío\")");
         
         motor.run();
+        
+        /*Recomendaciones r=new Recomendaciones();
+        r.inicializarVentana();
+        r.crearMapa();*/
         System.out.println(Recomendaciones.getRecomendaciones());
     }
     

@@ -6,6 +6,10 @@
 package views;
 
 import controlador.MotorController;
+import controlador.Recomendaciones;
+import controlador.VentanaRecom;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -127,7 +131,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Identifica tu animal");
+        setTitle("Escoge tus Preferencias");
 
         jBVer.setBackground(new java.awt.Color(230, 74, 25));
         jBVer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -519,8 +523,23 @@ public class VentanaUsuario extends javax.swing.JFrame {
             this.motorController.afirmar(climasInteres,lugaresInteres,actividadesInteres);
         } catch (JessException ex) {
             Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        VentanaRecom vr = new VentanaRecom();
+        Recomendaciones r=new Recomendaciones();
         
+        r.readTuristPoints();
+        vr.setRecomendaciones(r.getPuntosTuristicos());
+        try {
+            vr.crearMapa();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jBVerActionPerformed
 
